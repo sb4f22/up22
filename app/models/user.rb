@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  attr_accessible :wepay_token, :wepay_id, :wepay_account_id, :wepay_account_uri
+
 
   has_many :transactions, foreign_key: "funder_id", dependent: :destroy
 

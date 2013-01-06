@@ -1,0 +1,26 @@
+<h2> We Pay Info </h2>
+Personal Code:
+<%= params[:code] %>
+<br>
+
+<br>
+WePay Access Token:
+<%= @user.wepay_token %>
+<br><br>
+WePay Admin Id:
+<%= @user.wepay_id %>
+<br><br>
+WePay Account Id:
+<%= @user.wepay_account_id %>
+<br><br>
+WePay Account URI:
+<%= @user.wepay_account_uri %>
+<br><br>
+
+<%= link_to "WePay Step 2", create_wepay_account_url, class: "btn btn-success" %><br><br>
+  </div>
+</div>
+
+
+
+   

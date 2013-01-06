@@ -1,3 +1,69 @@
-<h3>User</h3>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<% if @user.campaign.present? %>
+<div class="wepay_connect_box">
+  <h2> Wepay Admin: </h2>
+  <% if @user.wepay_id.present? %>
+  <%= link_to "Wepay Connected", '#', class: "btn btn-success disabled" %><br><br>
+  <% else %>
+  <%= link_to "Wepay Step 1", wepay_connect_url, class: "btn btn-success" %><br><br>
+  <% end %>
+  
+  WePay Admin Id:
+  <%= @user.wepay_id %>
+  <br><br>
+  WePay Account Id:
+  <%= @user.wepay_account_id %>
+  <br><br>
+  WePay Account URI:
+  <%= link_to @user.wepay_account_uri, @user.wepay_account_uri, :target => "blank"  %>
+  <br><br>
+</div>
+<% end %>
+
+
+<h3><%= @user.name %></h3>
+<% if @user.avatar.file? %>
+  <%= image_tag @user.avatar.url(:medium) %>
+<% else %>
+ <%= image_tag "default_user_icon_128.png", :size => "128x128" %>
+<% end %>
+<br>
+<p><%= @user.email if @user.email %></p>
+<% if @user.campaign.present? %>
+<%= link_to "View/Edit Your Campaign", @user.campaign, class: "btn btn-info" %><br><br>
+<% end %>
+
+<% if @authentications %>
+  <% unless @authentications.empty? %>
+    <p><strong>You are now connected with:</strong></p>
+    <div class="authentications">
+      <% for authentication in @authentications %>
+        <div class="authentication">
+          <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+          <div class="provider"><%= authentication.provider.titleize %></div>
+          <div class="uid"><%= authentication.uid %></div>
+          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+        </div>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+<br><br>
+  <p><strong>Connect with Up&Away:</strong></p>
+<% else %>
+  <p><strong>Sign in through one of these services:</strong></p>
+<% end %>
+
+<a href="/auth/twitter" class="auth_provider">
+  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+  Twitter
+</a>
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>
+  Google
+</a>
+<div class="clear"></div>
+
