@@ -25,3 +25,16 @@ gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem "libv8", ">= 3.11.8"
 gem "therubyracer", ">= 0.11.0", :group => :assets, :platform => :ruby, :require => "v8"
+gem "nifty-generators", :group => :development
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'will_paginate', '~> 3.0'
+gem 'css3-progress-bar-rails'
+gem 'wepay-rails'
+gem "historyjs-rails", "~> 1.0.0"
+
+
+
+gem "mocha", :group => :test
