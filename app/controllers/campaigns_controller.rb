@@ -20,7 +20,7 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find_by_id(params[:id])
-   
+    @gifts = @campaign.gifts.paginate(:page => params[:page], :per_page => 1)
   end
 
   def destroy

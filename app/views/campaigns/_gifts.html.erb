@@ -8,25 +8,10 @@
       <h1>$<%= number_with_precision(gift.price, :precision => 2, :delimiter => ',') %></h1>
       <h1><%= gift.stock %> left</h1>
 
-      <% if signed_in? %>
-          <%= form_for(current_user.transactions.build(funded_id: @campaign.user.id, gift_id: gift.id, description: gift.description)) do |f| %>
-            
-              <div><%= f.hidden_field :funded_id %></div>
-              <div><%= f.hidden_field :gift_id %></div>
-              <div><p><b>Amount:</b></p>
-                    <p> ($2,000 => 2000.00) </p>
-                    <%= f.number_field :amount, placeholder: number_with_precision(gift.price, :precision => 2, :delimiter => ',') %></div>
-              <div><%= f.hidden_field :description %></div>
-
-
-            <%= f.submit "Claim this Gift", class: "btn btn-large btn-primary", :data => 
-            { :confirm => "Confirm Order: #{gift.description}, $#{number_with_precision(gift.price, :precision => 2, :delimiter => ',')}"  } %><br>
-
-          <% end %>
-      <% else %>
+     
         <%= link_to "Claim this Gift", '#Support', class: "btn btn-large btn-primary", :data => 
             { :confirm => "You Must Be Logged in to Claim this Gift"  } %><br><br>
-      <% end %>
+ 
 
 
       <%= link_to "Back To Campaign", '#Main', class: "btn btn-large btn-success" %><br>
@@ -42,19 +27,6 @@
       <%= image_tag "direct007.png", :size => "128x128" %>
       <h1>Straight Cash No Chaser</h1>
       <p><i>This is the best way to contribute because more of your money goes to helping this great cause.</i></p>
-      <% if signed_in? %>
-              <%= form_for(current_user.transactions.build(funded_id: @campaign.user.id, description: "Direct Contribution")) do |f| %>
-                  <div><p><b>Amount:</b></p>
-                    <p> ($2,000 => 2000) </p>
-                  <%= f.number_field :amount %></div>
-                  <div><%= f.hidden_field :description %></div>
-                  <div><%= f.hidden_field :funded_id %></div>
-                  <%= f.submit "Contribute", class: "btn btn-large btn-primary", :data => 
-                  { :confirm => "Confirm Order: Are You Sure?"  } %><br>
-              <% end %>
-
-    </div>
-      <% else %>
         <%= link_to "Contribute", '#Support', class: "btn btn-large btn-primary", :data => 
             { :confirm => "You Must Be Logged in to Contribute" } %><br><br>
    
@@ -96,7 +68,7 @@
 
  
 </div>
-  <% end %>
+
 <% end %>
 
 

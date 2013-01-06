@@ -1,0 +1,39 @@
+<%= will_paginate @gifts %>
+<div class="gift_item">
+<% if gift.image.file? %>
+<%= image_tag gift.image.url(:medium) %>
+<% else %>
+<%= image_tag "item007.png", :size => "128x128" %>
+<% end %>
+  <h1><%= gift.name %></h1>
+  <p><i><%= gift.description %></i></p>
+  <h1>$<%= number_with_precision(gift.price, :precision => 2, :delimiter => ',') %></h1>
+  <h1><%= gift.stock %> left</h1>
+  <% if signed_in? %>
+    <%= form_for(current_user.transactions.build(funded_id: @campaign.user.id, gift_id: gift.id, amount: gift.price, description: gift.description)) do |f| %>
+      
+      <div><%= f.hidden_field :funded_id %></div>
+      <div><%= f.hidden_field :gift_id %></div>
+      <div><%= f.hidden_field :amount %></div>
+      <div><%= f.hidden_field :description %></div>
+
+
+    <%= f.submit "Claim this Gift", class: "btn btn-large btn-primary", :data => 
+    { :confirm => "Confirm Order: #{gift.description}, $#{number_with_precision(gift.price, :precision => 2, :delimiter => ',')}"  } %><br>
+    <% end %>
+    <%= link_to "Support Without Gift", gift, class: "btn btn-large btn-success" %><br><br>
+  <% else %>
+  <%= link_to "Claim this Gift", gift, class: "btn btn-large btn-success" %><br>
+  <%= link_to "Support Without Gift", gift, class: "btn btn-large btn-primary" %><br>
+<% end %>
+
+
+<% if current_user == gift.campaign.user %>
+<%= link_to "Edit This Gift", edit_gift_path(gift.id), class: "btn btn-info" %><br>
+<% end %>
+</div>
+
+
+
+
+

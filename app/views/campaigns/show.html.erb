@@ -4,7 +4,7 @@
   <% if current_user == @campaign.user %>
   <%= link_to "Edit Your Campaign Page", edit_campaign_path(@campaign) %><br>
 
- 
+  <%= link_to "Add Gift", new_gift_path(@gifts) %><br>
   <%= link_to "View WePay Info", @campaign.user %><br>
   
     Your Campaign is connected to WePay
@@ -43,7 +43,7 @@
   <br><br>
   <h1> Support <%= @campaign.group_name %>: </h1>
   <div id="gifts">
-    
+     <%= render 'gifts' %>
   </div>
  <br>
 

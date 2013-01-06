@@ -1,0 +1,29 @@
+<% title "Gift" %>
+<%= image_tag "item007.png", :size => "128x128" %>
+<p>
+  <strong>Campaign:</strong>
+  <%= @gift.campaign.name %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @gift.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @gift.description %>
+</p>
+<p>
+  <strong>Stock:</strong>
+  <%= @gift.stock %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @gift.price %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_gift_path(@gift) %> |
+  <%= link_to "Destroy", @gift, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", gifts_path %> |
+  <%= link_to "Back to Campaign", @gift.campaign %>
+</p>

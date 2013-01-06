@@ -1,0 +1,25 @@
+<%= form_for @gift do |f| %>
+  <%= f.error_messages %>
+
+  <% f.hidden_field :campaign_id %>
+
+  <p>
+    Gift Name<br />
+    <%= f.text_field :name %>
+  </p>
+
+  
+  <p>
+   Brief Description of Gift<br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    How Many Do You Have to Give?<br />
+    <%= f.number_field :stock %>
+  </p>
+  <p>
+    How Much Does Each Cost?<br />
+    <%= f.text_field :price %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
