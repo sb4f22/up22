@@ -1,0 +1,102 @@
+<%= will_paginate @gifts %>
+<% @gifts.each do |gift| %>
+    <div class="gift_contributions">
+      <h2>Gift & Contribution </h2>
+      <%= image_tag "item007.png", :size => "128x128" %>
+      <h1><%= gift.name %></h1>
+      <p><i><%= gift.description %></i></p>
+      <h1>$<%= number_with_precision(gift.price, :precision => 2, :delimiter => ',') %></h1>
+      <h1><%= gift.stock %> left</h1>
+
+      <% if signed_in? %>
+          <%= form_for(current_user.transactions.build(funded_id: @campaign.user.id, gift_id: gift.id, description: gift.description)) do |f| %>
+            
+              <div><%= f.hidden_field :funded_id %></div>
+              <div><%= f.hidden_field :gift_id %></div>
+              <div><p><b>Amount:</b></p>
+                    <p> ($2,000 => 2000.00) </p>
+                    <%= f.number_field :amount, placeholder: number_with_precision(gift.price, :precision => 2, :delimiter => ',') %></div>
+              <div><%= f.hidden_field :description %></div>
+
+
+            <%= f.submit "Claim this Gift", class: "btn btn-large btn-primary", :data => 
+            { :confirm => "Confirm Order: #{gift.description}, $#{number_with_precision(gift.price, :precision => 2, :delimiter => ',')}"  } %><br>
+
+          <% end %>
+      <% else %>
+        <%= link_to "Claim this Gift", '#Support', class: "btn btn-large btn-primary", :data => 
+            { :confirm => "You Must Be Logged in to Claim this Gift"  } %><br><br>
+      <% end %>
+
+
+      <%= link_to "Back To Campaign", '#Main', class: "btn btn-large btn-success" %><br>
+
+    </div>
+
+  <div class="or_divider">
+  <h2>or</h2>
+  </div>
+
+  <div class="direct_contributions">
+        <h2>Direct Contribution</h2>
+      <%= image_tag "direct007.png", :size => "128x128" %>
+      <h1>Straight Cash No Chaser</h1>
+      <p><i>This is the best way to contribute because more of your money goes to helping this great cause.</i></p>
+      <% if signed_in? %>
+              <%= form_for(current_user.transactions.build(funded_id: @campaign.user.id, description: "Direct Contribution")) do |f| %>
+                  <div><p><b>Amount:</b></p>
+                    <p> ($2,000 => 2000) </p>
+                  <%= f.number_field :amount %></div>
+                  <div><%= f.hidden_field :description %></div>
+                  <div><%= f.hidden_field :funded_id %></div>
+                  <%= f.submit "Contribute", class: "btn btn-large btn-primary", :data => 
+                  { :confirm => "Confirm Order: Are You Sure?"  } %><br>
+              <% end %>
+
+    </div>
+      <% else %>
+        <%= link_to "Contribute", '#Support', class: "btn btn-large btn-primary", :data => 
+            { :confirm => "You Must Be Logged in to Contribute" } %><br><br>
+   
+ 
+  </div>
+
+
+<div class="sign_in_or_up">
+  <h2>Log-In to Contribute:</h2>
+  <br>
+  <a href="/auth/twitter" class="auth_provider">
+  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+  Twitter
+</a>
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>
+  Google
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "tumblr_64.png", :size => "64x64", :alt => "Tumblr" %>
+  Tumblr
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "myspace_64.png", :size => "64x64", :alt => "MySpace" %>
+  MySpace
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "yahoo_64.png", :size => "64x64", :alt => "Yahoo" %>
+  Yahoo
+</a>
+
+
+<%= link_to "Create Account with Up&Away", '#Support', class: "btn btn-medium btn-primary" %><br><br>
+<%= link_to "Login to an Up&Away Account", '#Support', class: "btn btn-medium btn-primary" %><br><br>
+
+ 
+</div>
+  <% end %>
+<% end %>
+
+

@@ -1,0 +1,29 @@
+<%= will_paginate @campaigns %>
+<% @campaigns.each do |campaign| %>
+
+  <% @user = campaign.user %>
+  <% @transactions = @user.transactions %>
+  <% @total_given = @user.funded.sum(:amount) %>
+  <% @needed_for_goal = campaign.request - @total_given %>
+  <% @fundining_percentage = (@total_given/campaign.request)*100 %>
+
+      <ul class="thumbnails">
+        <li class="campaign_item">
+          <div class="thumbnail">
+                <h1><%= link_to campaign.coop_name, campaign %></h1>
+                <% if campaign.video_link.present? %>
+                 <iframe width="325" height="220" src="https://www.youtube.com/embed/<%= campaign.video_id %>" frameborder="0" allowfullscreen></iframe>
+               <% else %>  
+                  <%= image_tag campaign.image.url(:medium) %>
+                <% end %>
+              <h3><%= campaign.short_description%></h3><br>
+               <%= progress_bar(@fundining_percentage, :color => 'blue', :rounded => true) %><br>
+               <h3><i>$<%= @total_given %>0 of $<%= campaign.request %>0</i></h3>
+                <h1><%= @fundining_percentage %>% funded </h1>
+               
+                <h1><%= distance_of_time_in_words_to_now(campaign.end_date) if campaign.end_date.present? %> left </h1><br>
+                <h3><%= campaign.category %></h3>
+            </div>
+         </li>
+      </ul>
+  <% end %>

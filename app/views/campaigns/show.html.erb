@@ -1,0 +1,50 @@
+<div class="campaign_page_content", div id="Main">
+  <h1><%= @campaign.name %></h1>
+
+<% if current_user == @campaign.user %>
+  <%= link_to "Edit Your Campaign Page", edit_campaign_path(@campaign) %><br>
+  <%= link_to "Add Gift", new_gift_path(@gifts) %><br>
+  <%= link_to "View WePay Info", @campaign.user %><br>
+  <% if @campaign.user.wepay_account_id.present? %>
+    Your Campaign is connected to WePay
+  <% else %>
+    You Campaign is not connected to Wepay
+  <% end %>
+<% end %>
+<br>
+<div class="campaign_page_stats">
+    <%= render 'shared/campaign_page_stats' %>
+  </div>
+  
+  <% if @campaign.vimeo_link.present? %>
+    <iframe src="http://player.vimeo.com/video/<%= @campaign.vimeo_video_id %>" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  <% elsif @campaign.youtube_link.present? %>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @campaign.youtube_video_id %>" frameborder="0" allowfullscreen></iframe>
+  <% else %>  
+    <%= image_tag @campaign.image.url(:medium) %>
+  <% end %>
+  <h2><%= @campaign.location %></h2>
+  <h3><%= @campaign.one_sentence%></h3>
+  <p><%= @campaign.long_description %></p>
+  <p><strong><%= @campaign.category %></strong></p>
+  <p><strong>Submitted By:</strong><br> <% if @campaign.user.avatar.file? %>
+  <%= image_tag @campaign.user.avatar.url(:thumb) %><br><%= @campaign.user.name %></p>
+<% else %>
+ <%= image_tag "default_user_icon_128.png", :size => "100x100" %><br><%= @campaign.user.name %><br>
+<% end %>
+</div>
+
+<div id="Support">
+  <br><br>
+  <h1> Support <%= @campaign.group_name %>: </h1>
+  <div id="gifts">
+    <%= render 'gifts' %>
+  </div>
+ <br>
+
+</div>
+    
+        
+
+
+  

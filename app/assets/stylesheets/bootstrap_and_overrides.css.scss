@@ -1,3 +1,185 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+
+/* home page */
+
+.home_banner{
+
+ float: center;
+
+ }
+
+ .campaigns
+{
+ position:relative;
+ float:left;
+ width: 200px;
+ height: 1350px;
+ margin-left:auto;
+ margin-right:auto;
+
+
+}
+
+
+/* authentications */
+
+ .authentications {
+  margin-bottom: 30px;
+}
+
+.authentication {
+  width: 130px;
+  float: left;
+  background-color: #EEE;
+  border: solid 1px #999;
+  padding: 5px 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.authentication .remove {
+  text-decoration: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #333;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.authentication .remove:hover {
+  color: #CCC;
+  background-color: #777;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+.authentication img {
+  float: left;
+  margin-right: 10px;
+}
+
+.authentication .provider {
+  font-weight: bold;
+}
+
+.authentication .uid {
+  color: #666;
+  font-size: 11px;
+}
+
+.auth_provider img {
+  display: block;
+}
+
+.auth_provider {
+  float: left;
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* campaign page */
+
+
+.campaign_page_stats
+ {
+ float: right;
+ width: 250px;
+ height: 700px;
+ background-color:#E8E8E8;
+ padding-left:50px;
+ padding-right:50px;
+ padding-bottom:0px;
+
+
+}
+
+.gift_contributions
+ {
+ float: left;
+ width: 200px;
+ height: 700px;
+ padding-left:50px;
+ padding-right:0px;
+ padding-bottom:0px;
+
+
+}
+
+.or_divider
+{
+ float: left;
+ width: 50px;
+ height: 700px;
+ padding-left:10px;
+ padding-right:0px;
+ padding-top:100px;
+ padding-bottom:0px;
+
+
+}
+
+
+.direct_contributions
+{
+
+ float: left;
+ width: 200px;
+ height: 700px;
+ padding-left:50px;
+ padding-right:50px;
+ padding-bottom:0px;
+
+
+}
+
+.sign_in_or_up
+{
+
+ float: left;
+ width: 220px;
+ height: 700px;
+ padding-left:30px;
+ padding-right:10px;
+ padding-bottom:0px;
+
+
+}
+
+.back_link
+{
+  
+float: left
+
+}
+
+
+
+
+
+
+
+
+/* user page */
+
+.wepay_connect_box
+{
+ float: right;
+ width: 500px;
+ height: 600px;
+
+ padding-left:50px;
+ padding-right:50px;
+ padding-bottom:0px;
+
+
+}
+
+

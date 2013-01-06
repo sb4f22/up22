@@ -5,4 +5,9 @@ Up22::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
+  resources :campaigns
+
+match 'activate', :to => 'campaigns#activate'
+match 'deactivate', :to => 'campaigns#deactivate'
+match '/start', to: 'home#start'
 end

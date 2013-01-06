@@ -1,0 +1,53 @@
+<%= form_for @campaign do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    Campaign Picture<br />
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.label :group_name %><br />
+    <%= f.text_field :group_name %>
+  </p>
+  <p>
+    Campaign Name<br><br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    Campaign Type<br><br/>
+    <%= f.text_field :type %>
+  </p>
+  <p>
+    City<br><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    State<br><br/>
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :one_sentence %><br />
+    <%= f.text_field :one_sentence %>
+  </p>
+  <p>
+    <%= f.label :long_description %><br />
+    <%= f.text_field :long_description %>
+  </p>
+  <p>
+    <%= f.label :youtube_link %><br />
+    <%= f.text_field :youtube_link %>
+  </p>
+  <p>
+    <%= f.label :vimeo_link %><br />
+    <%= f.text_field :vimeo_link %>
+  </p>
+  <p>
+    <%= f.label :request %><br />
+    <%= f.text_field :request %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

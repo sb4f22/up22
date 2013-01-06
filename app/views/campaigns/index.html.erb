@@ -1,0 +1,40 @@
+<% title "Campaigns" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Category</th>
+    <th>Group Name</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>One Sentence</th>
+    <th>Long Description</th>
+    <th>Youtube Link</th>
+    <th>Vimeo Link</th>
+    <th>Video</th>
+    <th>Request</th>
+    <th>End Date</th>
+    <th>Active</th>
+  </tr>
+  <% for campaign in @campaigns %>
+    <tr>
+      <td><%= campaign.user_id %></td>
+      <td><%= campaign.category %></td>
+      <td><%= campaign.group_name %></td>
+      <td><%= campaign.name %></td>
+      <td><%= campaign.location %></td>
+      <td><%= campaign.one_sentence %></td>
+      <td><%= campaign.long_description %></td>
+      <td><%= campaign.youtube_link %></td>
+      <td><%= campaign.vimeo_link %></td>
+      <td><%= campaign.video_id %></td>
+      <td><%= campaign.request %></td>
+      <td><%= campaign.end_date %></td>
+      <td><%= campaign.active %></td>
+      <td><%= link_to "Edit", edit_campaign_path(campaign) %></td>
+      <td><%= link_to "Destroy", campaign, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Campaign", new_campaign_path %></p>

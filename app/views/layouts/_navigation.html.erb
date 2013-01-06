@@ -1,26 +1,64 @@
-<%= link_to "Up2.2", root_path, :class => 'brand' %>
+<%= link_to "Up&Away", root_path, :class => 'brand' %>
 <ul class="nav">
+  <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Info <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "About this Website", '#' %></li>
+                <li><%= link_to "About Cooperatives", '#' %></li>
+                <li><%= link_to "Help for Campaigns", '#' %></li>
+                <li><%= link_to "Help for Funders", '#' %></li>
+              </ul>
+            </li>
+
+  
+  <% #if  user_signed_in? && current_user.campaign.present? %>
+
+  
+
+<li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Manage Campaign <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Your Campaign", "#" %></li>
+                <% #if current_user.campaign.gifts.any? %>
+                <li><%= link_to "Your Gifts", '#'  %></li>
+                <% #end %>
+              </ul>
+            </li>
+
+
+  <% #else %>
+  <li> <%= link_to "Start a Campaign", start_path %> </li>
+  <% #end %>
+ <li> <%= link_to "Featured Campaigns", '/#featured' %> </li>
+
   <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
-    </li>
+    <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Account<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <% if current_user.has_role? :admin %>
+                  <li>
+                  <%= link_to 'Admin', users_path %>
+                  </li>
+                  <% end %>
+                  <li><%= link_to 'View Profile', current_user %></li>
+                  <li><%= link_to 'Manage Account', edit_user_registration_path %></li>
+                  <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+                </ul>
+              </li>
   <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path %>
-    </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
-    </li>
-    <% if current_user.has_role? :admin %>
-      <li>
-      <%= link_to 'Admin', users_path %>
-      </li>
-    <% end %>
-  <% else %>
-    <li>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    </li>
+    <li id="fat-menu" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account<b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+              <li><%= link_to 'Create Account', new_user_registration_path %></li>
+              <li><%= link_to 'Login', new_user_session_path %></li>
+              </ul>
   <% end %>
 </ul>

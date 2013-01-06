@@ -11,7 +11,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106062314) do
+ActiveRecord::Schema.define(:version => 20130106093245) do
+
+  create_table "campaigns", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "category"
+    t.string   "type"
+    t.string   "group_name"
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "one_sentence"
+    t.string   "long_description"
+    t.string   "youtube_link"
+    t.string   "vimeo_link"
+    t.string   "youtube_video_id"
+    t.string   "vimeo_video_id"
+    t.decimal  "request"
+    t.date     "end_date"
+    t.boolean  "active",             :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "campaigns", ["active"], :name => "index_campaigns_on_active"
+  add_index "campaigns", ["category"], :name => "index_campaigns_on_category"
+  add_index "campaigns", ["city"], :name => "index_campaigns_on_city"
+  add_index "campaigns", ["end_date"], :name => "index_campaigns_on_end_date"
+  add_index "campaigns", ["group_name"], :name => "index_campaigns_on_group_name"
+  add_index "campaigns", ["name"], :name => "index_campaigns_on_name"
+  add_index "campaigns", ["state"], :name => "index_campaigns_on_state"
+  add_index "campaigns", ["type"], :name => "index_campaigns_on_type"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -38,6 +72,10 @@ ActiveRecord::Schema.define(:version => 20130106062314) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

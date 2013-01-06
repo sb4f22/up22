@@ -2,15 +2,15 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Up2.2" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Up2.2" %>">
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+<%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag 'jquery' %>  
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <header class="navbar navbar-fixed-top">
+
+  <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">
           <%= render 'layouts/navigation' %>
@@ -23,7 +23,8 @@
            <div class="row">
             <div class="span12">
               <%= render 'layouts/messages' %>
-              <%= yield %>
+            <%= content_tag :h1, yield(:title) if show_title? %>
+            <%= yield %>
             </div>
           </div>
           <footer>
@@ -33,3 +34,6 @@
     </div> <!--! end of #main -->
   </body>
 </html>
+
+  
+    

@@ -1,0 +1,17 @@
+<h1>Start a Campaign:</h1>
+<% if signed_in? %>
+    <section>
+       <p>
+      		Before beginning, you will need a bank account, blah, blah, and blah.
+      	<br>
+      		If you meet these requirements <%= link_to "click here to get started", new_campaign_path  %>
+          <br>
+       
+
+
+
+    </section>
+<% else %>
+ The first step is to sign-in to the site or create an account:  
+
+<% end %>
