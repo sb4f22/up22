@@ -1,0 +1,55 @@
+<% title "Contribution Information" %>
+
+<p>
+  <strong>Funder:</strong>
+  
+  <%= @funder.name %>
+</p>
+<p>
+  <strong>Funded:</strong>
+  
+  <%= @funded.name %>
+</p>
+<p>
+  <strong>Campain Funded:</strong>
+  
+  <%= @funded.campaign.name %>
+</p>
+<p>
+  <strong>Group Name:</strong>
+  <%= @funded.campaign.group_name %>
+</p>
+<p>
+  <strong>Category:</strong>
+  <%= @funded.campaign.category %>
+</p>
+<p>
+  <strong>Contribution Info:</strong>
+<% if @transaction.gift_id.present? %>
+<%= @gift.name %>, 
+<% end %>
+<%= @transaction.description %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  $<%= number_with_precision(@transaction.amount, :precision => 2, :delimiter => ',') %>
+</p>
+<p>
+  <strong>Checkout ID:</strong>
+  
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @transaction.created_at %>
+</p>
+
+<p>
+
+</p>
+<%= link_to "Back to Campaign", @funded.campaign %>
+<p>
+  <%= link_to "Edit", edit_transaction_path(@transaction) %> |
+  <%= link_to "Destroy", @transaction, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", transactions_path %>
+</p>

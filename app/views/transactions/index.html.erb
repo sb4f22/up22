@@ -1,0 +1,19 @@
+<% title "Transactions" %>
+
+<table>
+  <tr>
+    <th>Funder</th>
+    <th>Funded</th>
+  </tr>
+  <% for transaction in @transactions %>
+    <tr>
+      <td><%= transaction.funder_id %></td>
+      <td><%= transaction.funded_id %></td>
+      <td><%= link_to "Show", transaction %></td>
+      <td><%= link_to "Edit", edit_transaction_path(transaction) %></td>
+      <td><%= link_to "Destroy", transaction, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Transaction", new_transaction_path %></p>

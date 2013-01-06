@@ -1,0 +1,16 @@
+
+<% @user ||= current_user %>
+<% @transactions = @user.transactions %>
+<% @total_given = @transactions.sum(:amount) %>
+<% @needed_for_goal = @campaign.request - @total_given %>
+<% @fundining_percentage = (@total_given/@campaign.request)*100 %>
+
+
+<h1><%= link_to @campaign.group_name, @campaign %></h1>
+<%= image_tag @campaign.image.url(:medium) %>
+<%= progress_bar(@fundining_percentage, :color => 'blue', :rounded => true) %><br>
+<h3><i>$<%= @total_given %>0 of $<%= @campaign.request %>0</i></h3>
+<h1><%= @fundining_percentage %>% funded </h1>
+<h1><%= distance_of_time_in_words_to_now(@campaign.end_date) if @campaign.end_date.present? %> left </h1>
+<h3><%= @campaign.category %></h3>
+

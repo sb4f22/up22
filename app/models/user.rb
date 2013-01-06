@@ -14,4 +14,27 @@ class User < ActiveRecord::Base
 
   attr_accessible :avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
+  has_many :transactions, foreign_key: "funder_id", dependent: :destroy
+
+  has_many :funded_users, through: :transactions, source: :funded
+
+  has_many :reverse_transactions, foreign_key: "funded_id",
+                                   class_name:  "Transaction",
+                                   dependent:   :destroy
+
+  has_many :funders, through: :reverse_transactions, source: :funder
+
+def funding?(other_user)
+    transactions.find_by_funded_id(other_user.id)
+end
+
+def fund!(other_user)
+  transactions.create!(funded_id: other_user.id)
+end
+
+def unfund!(other_user)
+  transactions.find_by_funded_id(other_user.id).destroy
+end
+
 end

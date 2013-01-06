@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106191626) do
+ActiveRecord::Schema.define(:version => 20130106194714) do
 
   create_table "campaigns", :force => true do |t|
     t.integer  "user_id"
@@ -69,6 +69,20 @@ ActiveRecord::Schema.define(:version => 20130106191626) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "funder_id"
+    t.integer  "funded_id"
+    t.integer  "gift_id"
+    t.decimal  "amount"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "transactions", ["funded_id"], :name => "index_transactions_on_funded_id"
+  add_index "transactions", ["funder_id", "funded_id"], :name => "index_transactions_on_funder_id_and_funded_id"
+  add_index "transactions", ["funder_id"], :name => "index_transactions_on_funder_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

@@ -1,0 +1,12 @@
+<%= form_for @transaction do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :funder_id %><br />
+    <%= f.number_field :funder_id %>
+  </p>
+  <p>
+    <%= f.label :funded_id %><br />
+    <%= f.number_field :funded_id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
