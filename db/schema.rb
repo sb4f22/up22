@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20130106093245) do
   create_table "campaigns", :force => true do |t|
     t.integer  "user_id"
     t.string   "category"
-    t.string   "type"
+    t.string   "type_of_incorporation"
     t.string   "group_name"
     t.string   "name"
     t.string   "city"
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(:version => 20130106093245) do
     t.string   "vimeo_video_id"
     t.decimal  "request"
     t.date     "end_date"
-    t.boolean  "active",             :default => false
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.boolean  "active",                :default => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20130106093245) do
   add_index "campaigns", ["group_name"], :name => "index_campaigns_on_group_name"
   add_index "campaigns", ["name"], :name => "index_campaigns_on_name"
   add_index "campaigns", ["state"], :name => "index_campaigns_on_state"
-  add_index "campaigns", ["type"], :name => "index_campaigns_on_type"
+  add_index "campaigns", ["type_of_incorporation"], :name => "index_campaigns_on_type_of_incorporation"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

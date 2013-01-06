@@ -15,7 +15,11 @@
   </p>
   <p>
     Campaign Type<br><br/>
-    <%= f.text_field :type %>
+    <%= f.text_field :type_of_incorporation %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
   </p>
   <p>
     City<br><br />
@@ -45,9 +49,6 @@
     <%= f.label :request %><br />
     <%= f.text_field :request %>
   </p>
-  <p>
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
-  </p>
+  
   <p><%= f.submit %></p>
 <% end %>

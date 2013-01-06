@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  attr_accessible :category, :type, :group_name, :name, :city, :state, 
+  attr_accessible :category, :type_of_incorporation, :group_name, :name, :city, :state, 
   :one_sentence, :long_description, :youtube_link, :vimeo_link, 
   :vimeo_video_id, :youtube_video_id, :request, :end_date, :active, :image
 

@@ -3,7 +3,7 @@ class CreateCampaigns < ActiveRecord::Migration
     create_table :campaigns do |t|
       t.integer :user_id
       t.string :category
-      t.string :type
+      t.string :type_of_incorporation
       t.string :group_name
       t.string :name
       t.string :city
@@ -20,7 +20,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.timestamps
     end
       add_index :campaigns,:category
-      add_index :campaigns,:type
+      add_index :campaigns,:type_of_incorporation
       add_index :campaigns,:group_name
       add_index :campaigns,:name
       add_index :campaigns,:city
