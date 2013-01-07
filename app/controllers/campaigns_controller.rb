@@ -21,6 +21,10 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find_by_id(params[:id])
     @gifts = @campaign.gifts.paginate(:page => params[:page], :per_page => 1)
+    unless signed_in?
+      store_location
+    end
+    
   end
 
   def destroy
@@ -64,6 +68,10 @@ class CampaignsController < ApplicationController
     else
       redirect_to @campaign, :notice  => "Campaign Still Active."
     end
+  end
+
+   def store_location
+    session[:return_to] = request.fullpath
   end
 
 end

@@ -17,7 +17,9 @@ Up22::Application.routes.draw do
 
 
   root :to => "home#index"
-  devise_for :users
+  
+  devise_for :users, :controllers => {:registrations => 'registrations'}
+
   resources :users  do
     member do
       get :funding, :funders
@@ -34,4 +36,5 @@ Up22::Application.routes.draw do
   match 'activate', :to => 'campaigns#activate'
   match 'deactivate', :to => 'campaigns#deactivate'
   match 'confirm', :to => 'transactions#confirmation'
+  match '/auth/:provider/callback' => 'authentications#create'
 end

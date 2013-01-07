@@ -63,7 +63,7 @@
 
 
 <div class="sign_in_or_up">
-  <h2>Log-In to Contribute:</h2>
+  <h2>Log-In to Participate:</h2>
   <br>
   <a href="/auth/twitter" class="auth_provider">
   <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
@@ -96,6 +96,35 @@
 
  
 </div>
+  <% end %>
+  <% if signed_in? %>
+  <div class="sign_in_or_up">
+  <h2>Share with Friends:</h2>
+  <br>
+  <a href="/auth/twitter" class="auth_provider">
+  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+  Twitter
+</a>
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>
+  Google
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "tumblr_64.png", :size => "64x64", :alt => "Tumblr" %>
+  Tumblr
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "myspace_64.png", :size => "64x64", :alt => "MySpace" %>
+  MySpace
+</a>
+<a href="/auth/google" class="auth_provider">
+  <%= image_tag "yahoo_64.png", :size => "64x64", :alt => "Yahoo" %>
+  Yahoo
+</a>
   <% end %>
 <% end %>
 
