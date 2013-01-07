@@ -23,6 +23,7 @@ Up22::Application.routes.draw do
       get :funding, :funders
     end
   end
+
   match '/start', to: 'home#start'
   match '/auth/:provider/callback' => 'authentications#create'
   match '/campaigns/:campaign_id/gifts' => 'gifts#new'
@@ -32,4 +33,5 @@ Up22::Application.routes.draw do
   match 'wepay_auth', :to => 'users#wepay_auth'
   match 'activate', :to => 'campaigns#activate'
   match 'deactivate', :to => 'campaigns#deactivate'
+  match 'confirm', :to => 'transactions#confirmation'
 end

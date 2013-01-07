@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106204444) do
+ActiveRecord::Schema.define(:version => 20130107005106) do
 
   create_table "campaigns", :force => true do |t|
     t.integer  "user_id"
@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(:version => 20130106204444) do
     t.integer  "gift_id"
     t.decimal  "amount"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "checkout_uri"
+    t.integer  "checkout_id"
   end
 
   add_index "transactions", ["funded_id"], :name => "index_transactions_on_funded_id"
@@ -117,5 +119,38 @@ ActiveRecord::Schema.define(:version => 20130106204444) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "wepay_checkout_records", :force => true do |t|
+    t.integer  "checkout_id"
+    t.integer  "account_id"
+    t.string   "state"
+    t.string   "short_description"
+    t.text     "long_description"
+    t.string   "currency"
+    t.decimal  "amount"
+    t.decimal  "app_fee"
+    t.string   "fee_payer"
+    t.decimal  "gross"
+    t.decimal  "fee"
+    t.string   "reference_id"
+    t.text     "redirect_uri"
+    t.text     "callback_uri"
+    t.text     "checkout_uri"
+    t.string   "payer_email"
+    t.string   "payer_name"
+    t.text     "cancel_reason"
+    t.text     "refund_reason"
+    t.boolean  "auto_capture"
+    t.boolean  "require_shipping"
+    t.text     "shipping_address"
+    t.decimal  "tax"
+    t.string   "security_token"
+    t.string   "access_token"
+    t.string   "mode"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "wepay_checkout_records", ["checkout_id"], :name => "index_wepay_checkout_records_on_checkout_id"
 
 end

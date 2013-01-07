@@ -1,4 +1,4 @@
-<% title "Gift" %>
+<% title "Gift Added" %>
 <%= image_tag "item007.png", :size => "128x128" %>
 <p>
   <strong>Campaign:</strong>
@@ -22,6 +22,7 @@
 </p>
 
 <p>
+  <%= link_to "Add Another Gift", new_gift_path %> |
   <%= link_to "Edit", edit_gift_path(@gift) %> |
   <%= link_to "Destroy", @gift, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", gifts_path %> |

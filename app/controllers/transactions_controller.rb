@@ -1,4 +1,7 @@
 class TransactionsController < ApplicationController
+
+include WepayRails::Payments
+
   def index
     @transactions = Transaction.all
   end
@@ -16,19 +19,34 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = current_user.transactions.build(params[:transaction])
-    @transaction.save!
-    if @transaction.save
-      if @transaction.gift_id.present?
-        @gift_id = @transaction.gift_id
-        @gift = Gift.find_by_id(@gift_id)
-        @gift_count = @gift.stock - 1
-        @gift.update_attributes(:stock => @gift_count)
-      end
-      redirect_to @transaction, :notice => "Transaction Complete. Thank You!" 
+    @app_fee = (@transaction.amount)*(0.07)
+    wepay_gateway = WepayRails::Payments::Gateway.new(@transaction.funded.wepay_token)
+    response = wepay_gateway.perform_checkout({
+        :account_id         => @transaction.funded.wepay_account_id,
+        :amount             => @transaction.amount,
+        :app_fee            => @app_fee,
+        :short_description  => @transaction.description,
+        :redirect_uri       => 'http://192.168.2.3:3000/confirm',
+        :type               => 'GOODS'
+        })
+      @transaction.checkout_id = response[:checkout_id]
+      @transaction.checkout_uri = response[:checkout_uri]
+
+     @transaction.save!
+     if @transaction.save
+        if 
+          @transaction.gift_id.present?
+          @gift_id = @transaction.gift_id
+          @gift = Gift.find_by_id(@gift_id)
+          @gift_count = @gift.stock - 1
+          @gift.update_attributes(:stock => @gift_count)
+        end
+        redirect_to @transaction.checkout_uri
     else
       render :action => 'new'
     end
   end
+
 
   def edit
     @transaction = Transaction.find(params[:id])
@@ -48,4 +66,10 @@ class TransactionsController < ApplicationController
     @transaction.destroy
     redirect_to transactions_url, :notice => "Successfully destroyed transaction."
   end
+
+  def confirmation
+    @transaction  = Transaction.find_by_checkout_id(params[:checkout_id])
+    @gift  = Gift.find_by_id(params[:gift_id])
+  end
+
 end
