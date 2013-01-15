@@ -1,10 +1,11 @@
 production:
-  client_id: <your client id from wepay>
-  client_secret: <your client secret from wepay>
-  account_id: <your account id from wepay>
-  access_token: <your access token that you received when you went to http://your.domain.com/wepay/authorize>
-  root_callback_uri: "http://www.example.com"
-  after_checkout_redirect_uri: "http://www.example.com/purchase/finalize"
+  client_id: 169621 
+  client_secret: c68f718810
+  account_id: 
+  access_token: 
+  root_callback_uri: "http://tranquil-everglades-6746.herokuapp.com/"
+  after_checkout_redirect_uri:
+  scope: [manage_accounts,refund_payments,collect_payments,view_balance,view_user]
   scope: [refund_payments,collect_payments,view_balance,view_user]
   wepay_ui_endpoint: "https://www.wepay.com/v2"
   wepay_api_endpoint: "https://wepayapi.com/v2"
