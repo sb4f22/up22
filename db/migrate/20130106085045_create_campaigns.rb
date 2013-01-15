@@ -9,7 +9,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :one_sentence
-      t.string :long_description
+      t.text :long_description
       t.string :youtube_link
       t.string :vimeo_link
       t.string :youtube_video_id
