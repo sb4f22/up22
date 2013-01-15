@@ -6,7 +6,6 @@ production:
   root_callback_uri: "http://tranquil-everglades-6746.herokuapp.com/"
   after_checkout_redirect_uri:
   scope: [manage_accounts,refund_payments,collect_payments,view_balance,view_user]
-  scope: [refund_payments,collect_payments,view_balance,view_user]
   wepay_ui_endpoint: "https://stage.wepay.com/v2"
   wepay_api_endpoint: "https://stage.wepayapi.com/v2"
   fee_payer: Payee
