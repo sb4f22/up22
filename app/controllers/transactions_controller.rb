@@ -26,7 +26,7 @@ include WepayRails::Payments
         :amount             => @transaction.amount,
         :app_fee            => @app_fee,
         :short_description  => @transaction.description,
-        :redirect_uri       => 'http://192.168.2.3:3000/confirm',
+        :redirect_uri       => 'http://tranquil-everglades-6746.herokuapp.com/confirm',
         :type               => 'GOODS'
         })
       @transaction.checkout_id = response[:checkout_id]
