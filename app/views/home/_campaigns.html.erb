@@ -53,7 +53,7 @@
     <% end %>
 
     <% if campaign.active? && current_user != campaign.user %>
-      <%= link_to "View Campaign", campaign, class: "btn btn-large btn-primary" %><br>
+      <%= link_to "View Campaign", campaign, class: "btn btn-large btn-primary" , target: "_blank" %><br>
     <% end %>
               </div>
            </li>

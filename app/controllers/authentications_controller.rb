@@ -6,16 +6,15 @@ def index
 end
 
 
-
 def create
   omniauth = request.env["omniauth.auth"]
   authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
   if authentication
     flash[:notice] = "Signed in successfully."
     sign_in(:user, authentication.user)
-    redirect_back_or authentication.user
+    redirect_back_or :root
   elsif current_user
-    current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :email => omniauth['email'])
     flash[:notice] = "Authentication successful."
     redirect_to current_user
   else

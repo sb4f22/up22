@@ -52,6 +52,7 @@
                   <%= f.submit "Contribute", class: "btn btn-large btn-primary", :data => 
                   { :confirm => "Confirm Order: Are You Sure?"  } %><br>
               <% end %>
+              <p>WePay Info: 4003830171874018 </p>
 
     </div>
       <% else %>
@@ -69,7 +70,7 @@
   <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
   Twitter
 </a>
-<a href="/auth/facebook" class="auth_provider">
+<a href="/auth/facebook?display=popup" class="auth_provider">
   <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
   Facebook
 </a>

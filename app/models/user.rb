@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   has_many :funders, through: :reverse_transactions, source: :funder
 
-  has_many :authentications
+  has_many :authentications, dependent: :destroy
 
 def funding?(other_user)
     transactions.find_by_funded_id(other_user.id)
@@ -43,7 +43,7 @@ end
 
 
 def apply_omniauth(omniauth)
-  authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'], :email => omniauth['email'])
 end
 
 def password_required?

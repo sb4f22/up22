@@ -27,6 +27,9 @@ Up22::Application.routes.draw do
   end
 
   match '/start', to: 'home#start'
+  match '/presentation', to: 'home#presentation'
+  match '/organizer', to: 'home#organizer'
+  match '/largegroup', to: 'home#largegroup'
   match '/auth/:provider/callback' => 'authentications#create'
   match '/campaigns/:campaign_id/gifts' => 'gifts#new'
   match '/users/:user_id/transaction' => 'transaction#new'
