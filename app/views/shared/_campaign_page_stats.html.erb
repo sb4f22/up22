@@ -7,7 +7,12 @@
 
 
 <h1><%= link_to @campaign.group_name, @campaign %></h1>
+<% if @campaign.image.file? %>
 <%= image_tag @campaign.image.url(:medium) %><br><br>
+<% else %>
+<%= image_tag "default_user_icon_128.png", :size => "128x128" %>
+<% end %>
+
 <%= progress_bar(@fundining_percentage, :color => 'blue', :rounded => true) %><br>
 <h3><i>$<%= number_with_precision(@campaign.user.funders.sum(:amount), :precision => 2, :delimiter => ',') %> raised of $<%= number_with_precision(@campaign.request, :precision => 2, :delimiter => ',') %> goal</i></h3>
 <% if @campaign.user.funders.any? %>
