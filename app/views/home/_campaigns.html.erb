@@ -4,7 +4,7 @@
 
   <% if campaign.user.funders.any? %>
 
-    <% @fundining_percentage = number_to_percentage(campaign.user.funders.sum(:amount).to_f / campaign.request) %>
+    <% @fundining_percentage = (campaign.user.funders.sum(:amount).to_f / campaign.request) *100 %>
   
   <% end %>
 
@@ -25,7 +25,7 @@
   <%= progress_bar(@fundining_percentage, :color => 'blue', :rounded => true) %><br>
   <h3><i>$<%= number_with_precision(campaign.user.funders.sum(:amount), :precision => 2, :delimiter => ',') %> raised of $<%= number_with_precision(campaign.request, :precision => 2, :delimiter => ',') %> goal</i></h3>
   <% if campaign.user.funders.any? %>
-    <h1><%= number_with_precision(@fundining_percentage, :precision => 2, :delimiter => ',') %> funded </h1> 
+    <h1><%= number_with_precision(@fundining_percentage, :precision => 2, :delimiter => ',') %> % funded </h1> 
   <% else %>
     <h1>unfunded </h1>
   <% end %>
