@@ -1,10 +1,11 @@
   <%= will_paginate @campaigns %>
   
   <% @campaigns.each do |campaign| %>
-  <% @total_given = campaign.user.funders.sum(:amount) %>
 
   <% if campaign.user.funders.any? %>
-    <% @fundining_percentage = (@total_given/campaign.request)*100 %>
+
+    <% @fundining_percentage = number_to_percentage(campaign.user.funders.sum(:amount).to_f / campaign.request) %>
+  
   <% end %>
 
         <ul class="thumbnails">
@@ -22,9 +23,9 @@
                 <h3><%= campaign.one_sentence%></h3><br>
 
   <%= progress_bar(@fundining_percentage, :color => 'blue', :rounded => true) %><br>
-  <h3><i>$<%= number_with_precision(@total_given, :precision => 2, :delimiter => ',') %> raised of $<%= number_with_precision(campaign.request, :precision => 2, :delimiter => ',') %> goal</i></h3>
+  <h3><i>$<%= number_with_precision(campaign.user.funders.sum(:amount), :precision => 2, :delimiter => ',') %> raised of $<%= number_with_precision(campaign.request, :precision => 2, :delimiter => ',') %> goal</i></h3>
   <% if campaign.user.funders.any? %>
-    <h1><%= number_with_precision(@fundining_percentage, :precision => 2, :delimiter => ',') %>% funded </h1>
+    <h1><%= number_with_precision(@fundining_percentage, :precision => 2, :delimiter => ',') %> funded </h1> 
   <% else %>
     <h1>unfunded </h1>
   <% end %>
@@ -53,7 +54,7 @@
     <% end %>
 
     <% if campaign.active? && current_user != campaign.user %>
-      <%= link_to "View Campaign", campaign, class: "btn btn-large btn-primary" , target: "_blank" %><br>
+      <%= link_to "View Campaign", campaign, class: "btn btn-large btn-primary" %><br>
     <% end %>
               </div>
            </li>
